@@ -17,12 +17,16 @@ typedef struct 		s_list
 	struct s_list	*prev;
 }					t_list;
 
-typedef struct 		s_info
+typedef struct 		s_select
 {
 	int 			line;
 	int 			col;
-}					t_info;
+	int				maxlen;
+	struct termios	*sauv;
+	t_list			*list;
+}					t_select;
 
-t_list	*ft_parse(char **argv);
+t_list				*ft_parse(char **argv);
+t_select			*ft_glob(t_select *arg);
 
 #endif
