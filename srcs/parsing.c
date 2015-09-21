@@ -17,8 +17,10 @@
 
 t_list	*create_list(char **argv, int start, t_list *prev)
 {
-	t_list *elem;
+	t_list 	*elem;
+	int 	len;
 
+	len = 0;
 	if (!*argv)
 		return (NULL);
 	elem = malloc(sizeof(t_list));
@@ -48,7 +50,7 @@ t_list	*ft_parse(char **argv)
 {
 	if (!argv || !*argv || !**argv)
 		return (NULL);
-	return (circular(create_list(argv, 1, NULL)));
+	return (circular(create_list(++argv, 1, NULL)));
 }
 
 void	free_list(t_list *list)
