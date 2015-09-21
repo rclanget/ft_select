@@ -6,9 +6,11 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:24:20 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/21 17:31:09 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/21 17:32:13 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_select.h"
 
 #include <signal.h>
 
