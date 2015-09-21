@@ -1,82 +1,105 @@
 #include "ft_select.h"
 #include "libft.h"
 
-int             voir_touche()
-{
-  char     buffer[3];
- 
-  while (1)
-  {
-    read(0, buffer, 3);
-    if (buffer[0] == 27)
-    {
-      printf("Ctlr+d, on quitte !\n");
-      return (0);
-    }
-  }
-  return (0);
-}
-
-void set_term(struct termios term)
-{
-  tcsetattr(0, TCSADRAIN, &term);  
-}
-
-void  get_canon(struct termios term)
-{
-  term.c_lflag &= ~(ICANON); // Met le terminal en mode canonique.
-  term.c_lflag &= ~(ECHO); // les touches tapées ne s'inscriront plus dans le terminal
-  term.c_cc[VMIN] = 1;
-  term.c_cc[VTIME] = 0;
-  set_term(term);
-}
-
 int ft_putch(int c)
 {
   return (write(1, &c, 1));
 }
-    
-void print_elem(t_list *elem)
-{
 
+void print_video(char *str)
+{
+  char buf[30];
+  char *ap;
+  char *standout;
+  char *stendout;
+
+  ap = buf;
+  standout = tgetstr("so", &ap);
+  stendout = tgetstr("se", &ap);
+  tputs(standout, 1, ft_putch);
+  tputs(str, 1, ft_putch);
+  tputs(stendout, 1, ft_putch);
+}
+
+void print_underline(char *str)
+{
+  char buf[30];
+  char *ap;
+  char *standout;
+  char *stendout;
+
+  ap = buf;
+  standout = tgetstr("us", &ap);
+  stendout = tgetstr("ue", &ap);
+  tputs(standout, 1, ft_putch);
+  tputs(str, 1, ft_putch);
+  tputs(stendout, 1, ft_putch);
+}
+
+void print_underline_video(char *str)
+{
+  char buf[30];
+  char *ap;
+  char *standout_v;
+  char *stendout_v;
+  char *standout;
+  char *stendout;
+
+  ap = buf;
+  standout = tgetstr("us", &ap);
+  stendout = tgetstr("ue", &ap);
+  standout_v = tgetstr("so", &ap);
+  stendout_v = tgetstr("se", &ap);
+  tputs(standout_v, 1, ft_putch);
+  tputs(standout, 1, ft_putch);
+  tputs(str, 1, ft_putch);
+  tputs(stendout, 1, ft_putch);
+  tputs(stendout_v, 1, ft_putch);
+}
+
+void print_file(t_select *elem)
+{
+  if (elem->list->slctd)
+  {
+    if (elem->list->crrnt)
+      print_underline_video(elem->list->file);
+    else
+      print_video(elem->list->file);
+  }
+  else if (elem->list->crrnt)
+    print_underline(elem->list->file);
+  else
+    tputs(elem->list->file, 1, ft_putch);
+}
+
+void put_cursor(int i, int j)
+{
   char buf[30];
   char *ap = buf;
   char *gotostr;
+
+  gotostr = tgetstr("cm", &ap);
+  tputs(tgoto(gotostr, j, i), 1, ft_putch);
+}
+
+void print_elem(t_select *elem)
+{
+
   int i;
   int j;
 
   i = 1;
   j = 0;
-  elem = elem->next;
-  gotostr = tgetstr("cm", &ap);
-  while (!elem->start)
+  elem->list = elem->list->next;
+  while (!elem->list->start)
   {
-    if (i++ == ft_glob(NULL)->line - 1)
-    {
-      j += ft_glob(NULL)->maxlen + 1;
+    if ((i == ft_glob(NULL)->line - 1) && (j += (ft_glob(NULL)->maxlen + 1)))
       i = 0;
-    }
-    tputs(elem->file, 1, ft_putch);
-    tputs(tgoto(gotostr, j, i), 1, ft_putch);
-    elem = elem->next;
+    print_file(elem);
+    put_cursor(i++, j);
+    elem->list = elem->list->next;
   }
-  tputs(tgoto(gotostr, 0, ft_glob(NULL)->line + 1), 1, ft_putch);
-}
-
-void clear_win(void)
-{
-  char buf[30];
-  char *ap = buf;
-  char *clearstr;
-
-  clearstr = tgetstr("cl", &ap);
-  tputs(clearstr, 1, ft_putch);
-}
-
-void get_size(void)
-{
-  ft_glob(NULL)->col = tgetnum("co");
-  ft_glob(NULL)->line = tgetnum("li");
+  put_cursor(ft_glob(NULL)->line + 1, 0);
 }
 
 int             main(int argc, char **argv)
@@ -98,8 +121,6 @@ int             main(int argc, char **argv)
 		return (-1);
   get_canon(term);
   clear_win();
-  print_elem(ft_glob(NULL)->list);
+  print_elem(ft_glob(NULL));
   set_term(term);
-  sleep(5);
-  tputs("\n", 1, ft_putch);
 }

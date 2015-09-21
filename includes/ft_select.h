@@ -42,5 +42,12 @@ typedef struct 		s_select
 
 t_list				*ft_parse(char **argv);
 t_select			*ft_glob(t_select *arg);
+void				print_elem(t_select *elem);
+void				get_size(void);
+void				set_term(struct termios term);
+void				get_canon(struct termios term);
+void				clear_win(void);
+void				get_size(void);
+int					ft_putch(int c);
 
 #endif

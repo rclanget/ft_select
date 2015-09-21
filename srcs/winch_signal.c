@@ -17,7 +17,7 @@
 void		get_new_size(int i)
 {
 	get_size();
-	print_elem(ft_glob(NULL)->list);
+	print_elem(ft_glob(NULL));
 }
 
 void		handle_winch(void)

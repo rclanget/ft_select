@@ -28,7 +28,8 @@ t_list	*create_list(char **argv, int start, t_list *prev)
 	if (ft_glob(NULL)->maxlen < (len = ft_strlen(*argv)))
 		ft_glob(NULL)->maxlen = len;
 	elem->start = start;
-	elem->select = 0;
+	elem->crrnt = start;
+	elem->slctd = 0;
 	elem->prev = prev;
 	elem->next = create_list(++argv, 0, elem);
 	return (elem);
