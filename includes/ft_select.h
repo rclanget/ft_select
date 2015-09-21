@@ -17,4 +17,12 @@ typedef struct 		s_list
 	struct s_list	*prev;
 }					t_list;
 
+typedef struct 		s_info
+{
+	int 			line;
+	int 			col;
+}					t_info;
+
+t_list	*ft_parse(char **argv);
+
 #endif
