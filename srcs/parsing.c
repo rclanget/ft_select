@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 14:49:48 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/21 15:44:49 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/21 17:13:57 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_list	*create_list(char **argv, int start, t_list *prev)
 	elem = malloc(sizeof(t_list));
 	elem->file = ft_strdup(*argv);
 	elem->start = start;
+	elem->select = 0;
 	elem->prev = prev;
 	elem->next = create_list(++argv, 0, elem);
 	return (elem);
