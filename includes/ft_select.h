@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_select.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/09/21 17:19:14 by ulefebvr          #+#    #+#             */
+/*   Updated: 2015/09/21 19:16:37 by ulefebvr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 
@@ -12,7 +24,9 @@ typedef struct 		s_list
 {
 	char			*file;
 	int 			start;
-	int				select;
+	int				slctd;
+	int				crrnt;
+	int				dlted;
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;
