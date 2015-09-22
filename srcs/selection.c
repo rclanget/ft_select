@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/22 13:43:37 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/22 14:00:34 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 t_lst	*get_elemno(int no)
 {
 	t_lst	*begin;
+	int		last;
 
 	begin = ft_glob(NULL)->list;
-	if (no < 0)
-		return (begin->prev);
+	last = ft_glob(NULL)->prev->no;
+	if (no < 0 || no > last)
+		return (no < 0 ? begin->prev : begin);
 	while (begin->no != no)
 		begin = begin->next;
 	return (begin);
