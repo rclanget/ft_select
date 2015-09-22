@@ -114,8 +114,10 @@ void print_elem(t_select *elem)
     if ((i == ft_glob(NULL)->line - 1) && (j += (ft_glob(NULL)->maxlen + 1)))
       i = 0;
     if (!elem->list->dlted)
+    {
       print_file(elem);
-    put_cursor(i++, j);
+      put_cursor(i++, j);
+    }
     elem->list = elem->list->next;
   }
   put_cursor(ft_glob(NULL)->line + 1, 0);
