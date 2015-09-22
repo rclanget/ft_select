@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/22 14:26:38 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/22 14:37:04 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_lst	*get_elemno(int no)
 		return (no < 0 ? begin->prev : begin);
 	while (begin->no != no)
 		begin = begin->next;
+	while (begin->dlted)
+		begin = begin->next;
 	return (begin);
 }
 
@@ -36,13 +38,11 @@ void	selection(int move, int del)
 	begin->crrnt = 0;
 	if (move)
 		get_elemno(begin->no + move)->crrnt = 1;
-	else if (!sel)
+	else
 	{
 		begin->next->crrnt = 1;
-		if (!del)
-			begin->slctd = 1;
-		else
-			begin->dlted = 1;
+		begin->slctd = (!del) ? 1 : 0;
+		begin->dlted = del;
 	}
 }
 
