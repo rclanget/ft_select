@@ -57,19 +57,19 @@ void print_underline_video(char *str)
   tputs(stendout_v, 1, ft_putch);
 }
 
-void print_file(t_select *elem)
+void print_file(t_lst *lst)
 {
-  if (elem->list->slctd)
+  if (lst->slctd)
   {
-    if (elem->list->crrnt)
-      print_underline_video(elem->list->file);
+    if (lst->crrnt)
+      print_underline_video(lst->file);
     else
-      print_video(elem->list->file);
+      print_video(lst->file);
   }
-  else if (elem->list->crrnt)
-    print_underline(elem->list->file);
+  else if (lst->crrnt)
+    print_underline(lst->file);
   else
-    tputs(elem->list->file, 1, ft_putch);
+    tputs(lst->file, 1, ft_putch);
 }
 
 void put_cursor(int i, int j)
@@ -102,23 +102,24 @@ void print_elem(t_select *elem)
 {
   int i;
   int j;
+  t_lst *begin;
 
   i = 1;
   j = 0;
+  begin = elem->list;
   clear_win();
-  print_file(elem);
-  put_cursor(i++, j);
-  elem->list = elem->list->next;
-  while (!elem->list->start)
+  while (1)
   {
     if ((i == ft_glob(NULL)->line - 1) && (j += (ft_glob(NULL)->maxlen + 1)))
       i = 0;
-    if (!elem->list->dlted)
+    if (!begin->dlted)
     {
-      print_file(elem);
+      print_file(begin);
       put_cursor(i++, j);
     }
-    elem->list = elem->list->next;
+    begin = begin->next;
+    if (begin->start)
+      break;
   }
   put_cursor(ft_glob(NULL)->line + 1, 0);
 }
