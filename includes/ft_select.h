@@ -50,5 +50,7 @@ void				get_canon(struct termios term);
 void				clear_win(void);
 void				get_size(void);
 int					ft_putch(int c);
+void				handle_winch(void);
+int					looping(void);
 
 #endif

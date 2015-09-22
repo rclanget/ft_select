@@ -84,16 +84,16 @@ void put_cursor(int i, int j)
 
 void print_elem(t_select *elem)
 {
-
   int i;
   int j;
 
   i = 1;
   j = 0;
   elem->list = elem->list->next;
+  clear_win();
   while (!elem->list->start)
   {
-    if ((i == ft_glob(NULL)->line - 1) && (j += (ft_glob(NULL)->maxlen + 1)))
+    if ((i == ft_glob(NULL)->line -1) && (j += (ft_glob(NULL)->maxlen + 1)))
       i = 0;
     print_file(elem);
     put_cursor(i++, j);
@@ -109,6 +109,7 @@ int             main(int argc, char **argv)
   t_select *info;
 
   (void)argc;
+  handle_winch();
   info = (t_select *)malloc(sizeof(t_select));
   ft_glob(info);
   if ((name_term = getenv("TERM")) == NULL)
@@ -120,7 +121,8 @@ int             main(int argc, char **argv)
 	if (tcgetattr(0, &term) == -1)
 		return (-1);
   get_canon(term);
-  clear_win();
   print_elem(ft_glob(NULL));
+  while (1)
+    looping();
   set_term(term);
 }

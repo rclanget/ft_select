@@ -44,8 +44,9 @@ int		looping(void)
 	{
 		if (buf[2] == 'A')
 			selection(-1);
-		if (buf[3] == 'B')
+		if (buf[2] == 'B')
 			selection(1);
 		print_elem(ft_glob(NULL));
 	}
+	return (0);
 }

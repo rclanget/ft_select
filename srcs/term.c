@@ -31,6 +31,6 @@ void get_size(void)
   struct winsize w;
 
   ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-  ft_glob(NULL)->col = w.ws_row;
-  ft_glob(NULL)->line = w.ws_col;
+  ft_glob(NULL)->col = w.ws_col;
+  ft_glob(NULL)->line = w.ws_row;
 }
