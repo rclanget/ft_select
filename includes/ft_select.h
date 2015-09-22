@@ -54,5 +54,7 @@ void				handle_winch(void);
 int					looping(void);
 void				handle_sigcont(void);
 void				get_new_size(int i);
+void				put_cursor(int i, int j);
+void				stat_cursor(int stat);
 
 #endif

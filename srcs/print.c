@@ -82,20 +82,9 @@ void put_cursor(int i, int j)
   tputs(tgoto(gotostr, j, i), 1, ft_putch);
 }
 
-// int  nbr_line(t_select *elem)
+// void trop_grand()
 // {
-//   int nb_elem;
-//   int nb_col;
-
-//   i = 0;
-//   elem->list = elem->list->next;
-//   while (!elem->list->start && i++)
-//     elem->list = elem->list->next;
-//   nb_col = i / ft_glob(NULL)->line;
-//   if (((i + 1) * ft_glob(NULL)->maxlen) < ft_glob(NULL)->col)
-
-
-//   if ()
+//   return oui ou non
 // }
 
 void print_elem(t_select *elem)
@@ -110,8 +99,10 @@ void print_elem(t_select *elem)
   clear_win();
   while (1)
   {
-    if ((i == ft_glob(NULL)->line - 1) && (j += (ft_glob(NULL)->maxlen + 1)))
-      i = 0;
+    if ((i == ft_glob(NULL)->line) && (j += (ft_glob(NULL)->maxlen + 1)))
+        i = 0;
+    if ((j + ft_glob(NULL)->maxlen) > ft_glob(NULL)->col)
+      break;
     if (!begin->dlted)
     {
       print_file(begin);
@@ -121,7 +112,7 @@ void print_elem(t_select *elem)
     if (begin->start)
       break;
   }
-  put_cursor(ft_glob(NULL)->line + 1, 0);
+  put_cursor(ft_glob(NULL)->line + 1, 200);
 }
 
 int             main(int argc, char **argv)
@@ -138,14 +129,15 @@ int             main(int argc, char **argv)
   if ((name_term = getenv("TERM")) == NULL)
 		return (-1);
 	tgetent(NULL, name_term);
-
   ft_glob(NULL)->list = ft_parse(argv);
   get_size();
 	if (tcgetattr(0, &term) == -1)
 		return (-1);
   get_canon(term);
+  stat_cursor(0);
   print_elem(ft_glob(NULL));
   while (1)
     looping();
+  stat_cursor(1);
   set_term(term);
 }

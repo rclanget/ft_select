@@ -21,9 +21,25 @@ void clear_win(void)
   char buf[30];
   char *ap = buf;
   char *clearstr;
+  int  line;
 
-  clearstr = tgetstr("cl", &ap);
-  tputs(clearstr, 1, ft_putch);
+  line = ft_glob(NULL)->line;
+  clearstr = tgetstr("dl", &ap);
+  while (line-- >= 0)
+  {
+    tputs(clearstr, 1, ft_putch);
+    put_cursor(line, 0);
+  }
+}
+
+void stat_cursor(int stat)
+{
+  char buf[30];
+  char *ap = buf;
+  char *cursor;
+
+  cursor = tgetstr(stat ? "ve" : "vi", &ap);
+  tputs(cursor, 1, ft_putch);
 }
 
 void get_size(void)
