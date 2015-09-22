@@ -82,11 +82,6 @@ void put_cursor(int i, int j)
   tputs(tgoto(gotostr, j, i), 1, ft_putch);
 }
 
-// void trop_grand()
-// {
-//   return oui ou non
-// }
-
 void print_elem(t_select *elem)
 {
   int i;
