@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 14:49:48 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/22 11:15:54 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/22 13:39:43 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <stdlib.h>
 
-t_lst	*create_list(char **argv, int start, t_lst *prev)
+t_lst	*create_list(char **argv, int start, t_lst *prev, int number)
 {
 	t_lst 	*elem;
 	int 	len;
@@ -30,8 +30,9 @@ t_lst	*create_list(char **argv, int start, t_lst *prev)
 	elem->start = start;
 	elem->crrnt = start;
 	elem->slctd = 0;
+	elem->no = number;
 	elem->prev = prev;
-	elem->next = create_list(++argv, 0, elem);
+	elem->next = create_list(++argv, 0, elem, ++number);
 	return (elem);
 }
 
@@ -51,7 +52,7 @@ t_lst	*ft_parse(char **argv)
 {
 	if (!argv || !*argv || !**argv)
 		return (NULL);
-	return (circular(create_list(++argv, 1, NULL)));
+	return (circular(create_list(++argv, 1, NULL, 0)));
 }
 
 void	free_list(t_lst *list)
