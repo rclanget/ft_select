@@ -26,6 +26,9 @@ void clear_win(void)
 
 void get_size(void)
 {
-  ft_glob(NULL)->col = tgetnum("co");
-  ft_glob(NULL)->line = tgetnum("li");
+  struct winsize w;
+
+  ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+  ft_glob(NULL)->col = w.ws_row;
+  ft_glob(NULL)->line = w.ws_col;
 }
