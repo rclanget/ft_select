@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 14:49:48 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/21 17:21:01 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/22 11:15:54 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 #include <stdlib.h>
 
-t_list	*create_list(char **argv, int start, t_list *prev)
+t_lst	*create_list(char **argv, int start, t_lst *prev)
 {
-	t_list 	*elem;
+	t_lst 	*elem;
 	int 	len;
 
 	len = 0;
 	if (!*argv)
 		return (NULL);
-	elem = malloc(sizeof(t_list));
+	elem = malloc(sizeof(t_lst));
 	elem->file = ft_strdup(*argv);
 	if (ft_glob(NULL)->maxlen < (len = ft_strlen(*argv)))
 		ft_glob(NULL)->maxlen = len;
@@ -35,9 +35,9 @@ t_list	*create_list(char **argv, int start, t_list *prev)
 	return (elem);
 }
 
-t_list	*circular(t_list *list)
+t_lst	*circular(t_lst *list)
 {
-	t_list	*end;
+	t_lst	*end;
 
 	end = list;
 	while (end->next)
@@ -47,14 +47,14 @@ t_list	*circular(t_list *list)
 	return (list);
 }
 
-t_list	*ft_parse(char **argv)
+t_lst	*ft_parse(char **argv)
 {
 	if (!argv || !*argv || !**argv)
 		return (NULL);
 	return (circular(create_list(++argv, 1, NULL)));
 }
 
-void	free_list(t_list *list)
+void	free_list(t_lst *list)
 {
 	while ((list = list->next))
 	{

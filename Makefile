@@ -11,9 +11,9 @@
 #******************************************************************************#
 
 SRC_PATH	=	./srcs/
-SRC_NAME	=	
+SRC_NAME	=	global.c parsing.c print.c term.c winch_signal.c
 OBJ_PATH	=	./obj/
-INC_PATH	=	./include/
+INC_PATH	=	./includes/ ./libft/includes/
 NAME		=	./ft_select
 CC			=	gcc
 CFLAGS		=	-Werror -Wall -Wextra
@@ -22,12 +22,13 @@ OBJ_NAME	=	$(SRC_NAME:.c=.o)
 SRC			=	$(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ			=	$(addprefix $(OBJ_PATH),$(OBJ_NAME))
 INC			=	$(addprefix -I,$(INC_PATH))
-LIB_NAMES	=	
+LIB_NAMES	=	-ltermcap ./libft/libft.a
 LDFLAGS		=	$(LIB_NAMES)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	make -C libft
 	$(CC) $(LDFLAGS) $(OBJ) -o $@
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
@@ -35,13 +36,16 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 
 clean:
+	make clean -C libft
 	rm -fv $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
 
 fclean: clean
+	make fclean -C libft
 	rm -fv $(NAME)
 
 re: fclean all
+	make re -C libft
 
 norme:
 	norminette $(SRC)

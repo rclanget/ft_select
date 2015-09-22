@@ -1,5 +1,7 @@
 #include "ft_select.h"
 
+#include <sys/ioctl.h>
+
 void set_term(struct termios term)
 {
   tcsetattr(0, TCSADRAIN, &term);  

@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:19:14 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/21 19:16:37 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/22 11:16:35 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@
 
 #include <stdio.h>
 
-typedef struct 		s_list
+typedef struct 		s_lst
 {
 	char			*file;
 	int 			start;
 	int				slctd;
 	int				crrnt;
 	int				dlted;
-	struct s_list	*next;
-	struct s_list	*prev;
-}					t_list;
+	struct s_lst	*next;
+	struct s_lst	*prev;
+}					t_lst;
 
 typedef struct 		s_select
 {
@@ -37,10 +37,10 @@ typedef struct 		s_select
 	int 			col;
 	int				maxlen;
 	struct termios	*sauv;
-	t_list			*list;
+	t_lst			*list;
 }					t_select;
 
-t_list				*ft_parse(char **argv);
+t_lst				*ft_parse(char **argv);
 t_select			*ft_glob(t_select *arg);
 void				print_elem(t_select *elem);
 void				get_size(void);

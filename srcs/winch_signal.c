@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:24:20 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/21 17:32:13 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/22 11:17:13 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 void		get_new_size(int i)
 {
+	(void)i;
 	get_size();
 	print_elem(ft_glob(NULL));
 }
