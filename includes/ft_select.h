@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:19:14 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/22 11:16:35 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/22 13:38:31 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct 		s_lst
 	int				slctd;
 	int				crrnt;
 	int				dlted;
+	int				no;
 	struct s_lst	*next;
 	struct s_lst	*prev;
 }					t_lst;
