@@ -82,6 +82,22 @@ void put_cursor(int i, int j)
   tputs(tgoto(gotostr, j, i), 1, ft_putch);
 }
 
+// int  nbr_line(t_select *elem)
+// {
+//   int nb_elem;
+//   int nb_col;
+
+//   i = 0;
+//   elem->list = elem->list->next;
+//   while (!elem->list->start && i++)
+//     elem->list = elem->list->next;
+//   nb_col = i / ft_glob(NULL)->line;
+//   if (((i + 1) * ft_glob(NULL)->maxlen) < ft_glob(NULL)->col)
+
+
+//   if ()
+// }
+
 void print_elem(t_select *elem)
 {
   int i;
@@ -89,13 +105,16 @@ void print_elem(t_select *elem)
 
   i = 1;
   j = 0;
-  elem->list = elem->list->next;
   clear_win();
+  print_file(elem);
+  put_cursor(i++, j);
+  elem->list = elem->list->next;
   while (!elem->list->start)
   {
-    if ((i == ft_glob(NULL)->line -1) && (j += (ft_glob(NULL)->maxlen + 1)))
+    if ((i == ft_glob(NULL)->line - 1) && (j += (ft_glob(NULL)->maxlen + 1)))
       i = 0;
-    print_file(elem);
+    if (!elem->list->dlted)
+      print_file(elem);
     put_cursor(i++, j);
     elem->list = elem->list->next;
   }
