@@ -11,7 +11,7 @@
 #******************************************************************************#
 
 SRC_PATH	=	./srcs/
-SRC_NAME	=	global.c parsing.c print.c term.c winch_signal.c selection.c
+SRC_NAME	=	global.c parsing.c print.c term.c winch_signal.c selection.c sigcont.c
 OBJ_PATH	=	./obj/
 INC_PATH	=	./includes/ ./libft/includes/
 NAME		=	./ft_select

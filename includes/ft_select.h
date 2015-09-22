@@ -52,5 +52,7 @@ void				get_size(void);
 int					ft_putch(int c);
 void				handle_winch(void);
 int					looping(void);
+void				handle_sigcont(void);
+void				get_new_size(int i);
 
 #endif

@@ -132,6 +132,7 @@ int             main(int argc, char **argv)
 
   (void)argc;
   handle_winch();
+  handle_sigcont();
   info = (t_select *)malloc(sizeof(t_select));
   ft_glob(info);
   if ((name_term = getenv("TERM")) == NULL)

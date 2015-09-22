@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_script.h"
+#include "ft_select.h"
 
 #include <signal.h>
 
@@ -21,12 +21,12 @@ void	get_continue(int i)
 
 	(void)i;
 	if ((name_term = getenv("TERM")) == NULL)
-		return (-1);
+		return ;
 	tgetent(NULL, name_term);
 	if (tcgetattr(0, &term) == -1)
-		return (-1);
+		return ;
 	get_canon(term);
-	get_new_size();
+	get_new_size(0);
 }
 
 
