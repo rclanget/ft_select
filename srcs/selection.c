@@ -18,7 +18,7 @@ t_lst	*get_elemno(int no)
 	int		last;
 
 	begin = ft_glob(NULL)->list;
-	last = ft_glob(NULL)->prev->no;
+	last = ft_glob(NULL)->list->prev->no;
 	if (no < 0 || no > last)
 		return (no < 0 ? begin->prev : begin);
 	while (begin->no != no)
