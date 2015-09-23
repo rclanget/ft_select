@@ -52,7 +52,7 @@ t_lst	*ft_parse(char **argv)
 {
 	if (!argv || !*argv || !**argv)
 		return (NULL);
-	return (circular(create_list(++argv, 1, NULL, 0)));
+	return (circular(create_list(argv, 1, NULL, 0)));
 }
 
 void	free_list(t_lst *list)

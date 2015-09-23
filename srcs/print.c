@@ -3,10 +3,11 @@
 
 int ft_exit(void)
 {
-  set_term(*ft_glob(NULL)->sauv);
+  set_term(ft_glob(NULL)->sauv);
   stat_cursor(1);
   free_list(ft_glob(NULL)->list);
   free(ft_glob(NULL));
+  sleep(10);
   exit (0);
 }
 
@@ -108,34 +109,4 @@ void print_elem(t_lst *list)
       break;
   }
   current ? put_cursor(ft_glob(NULL)->line + 1, 0) : print_elem(begin->next);
-}
-
-int             main(int argc, char **argv)
-{
-	char            *name_term;
-  struct termios  term;
-  struct termios  sauv;
-  t_select        *info;
-
-  (void)argc;
-  handle_winch();
-  handle_sigcont();
-  info = (t_select *)malloc(sizeof(t_select));
-  ft_glob(info);
-  if (ft_out_fd() == -1)
-    exit(0);
-  if ((name_term = getenv("TERM")) == NULL)
-		return (-1);
-	tgetent(NULL, name_term);
-  ft_glob(NULL)->list = ft_parse(argv);
-	if (tcgetattr(0, &sauv) == -1)
-  	return (-1);
-  term = sauv;
-  ft_glob(NULL)->sauv = &sauv;
-  get_canon(term);
-  stat_cursor(0);
-  get_size();
-  print_elem(ft_glob(NULL)->list);
-  while (1)
-    looping();
 }
