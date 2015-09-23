@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/22 16:09:34 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/23 10:40:40 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,24 @@ void	selection(int move, int del)
 
 void	enter(void)
 {
-	return ;
+	t_lst	*begin;
+
+	begin = ft_glob(NULL)->list;
+	while (begin)
+	{
+		if (begin->slctd)
+		{
+			ft_fdprintf("%s", begin->file);
+			if (begin->no < last)
+				ft_fdprintf(ft_glob(NULL)->out_fd, " ");
+		}
+		if ((begin = begin->next)->start)
+		{
+			ft_fdprintf(ft_glob(NULL)->out_fd, "\n");
+			break ;
+		}
+	}
+	ft_exit();
 }
 
 int		looping(void)
@@ -71,6 +88,6 @@ int		looping(void)
 		selection(0, 0);
 	else if (buf[0] == 10 && buf[1] == 0 && buf[2] == 0)
 		enter();
-	print_elem(ft_glob(NULL));
+	print_elem(ft_glob(NULL)->list);
 	return (0);
 }
