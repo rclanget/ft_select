@@ -43,7 +43,7 @@ typedef struct 		s_select
 
 t_lst				*ft_parse(char **argv);
 t_select			*ft_glob(t_select *arg);
-void				print_elem(t_select *elem);
+void				print_elem(t_lst *list);
 void				get_size(void);
 void				set_term(struct termios term);
 void				get_canon(struct termios term);
@@ -56,5 +56,6 @@ void				handle_sigcont(void);
 void				get_new_size(int i);
 void				put_cursor(int i, int j);
 void				stat_cursor(int stat);
+void				free_list(t_lst *list);
 
 #endif
