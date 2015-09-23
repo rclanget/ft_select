@@ -6,19 +6,20 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/23 16:45:43 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/23 16:57:18 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 #include "libft.h"
+#include "ft_printf.h"
 
 #define UP_KEY		4283163
 #define DOWN_KEY	4348699
 #define LEFT_KEY	4479771
 #define RIGHT_KEY	4414235
 #define ENTER_KEY	10
-#define ESC_KEY		96
+#define ESC_KEY		27
 #define SPACE_KEY	32
 #define DEL_KEY		127
 
@@ -60,24 +61,27 @@ void	enter(void)
 {
 	t_lst	*begin;
 	int		last;
+	int		selected;
 
+	selected = 0;
 	last = ft_glob(NULL)->list->prev->no;
 	begin = ft_glob(NULL)->list;
 	clear_win();
-	while (begin)
+	while (1)
 	{
 		if (begin->slctd)
 		{
-			ft_fdprintf("%s", begin->file);
+			selected++;
+			ft_fdprintf(1, "%s", begin->file);
 			if (begin->no < last)
-				ft_fdprintf(ft_glob(NULL)->out_fd, " ");
+				ft_fdprintf(1, " ");
 		}
-		if ((begin = begin->next)->start)
-		{
-			ft_fdprintf(ft_glob(NULL)->out_fd, "\n");
+		if (begin->next->start)
 			break ;
-		}
+		begin = begin->next;
 	}
+	if (selected)
+		ft_fdprintf(1, "\n");
 	ft_exit();
 }
 

@@ -14,7 +14,7 @@
 
 #include <fcntl.h>
 
-int		ft_out(void)
+int		ft_out_fd(void)
 {
 	if ((ft_glob(NULL)->out_fd = open(ttyname(0), O_WRONLY)) == -1)
 		return (-1);

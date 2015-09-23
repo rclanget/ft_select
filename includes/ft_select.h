@@ -58,5 +58,7 @@ void				get_new_size(int i);
 void				put_cursor(int i, int j);
 void				stat_cursor(int stat);
 void				free_list(t_lst *list);
+int					ft_exit(void);
+int					ft_out_fd(void);
 
 #endif
