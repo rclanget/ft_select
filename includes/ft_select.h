@@ -38,7 +38,7 @@ typedef struct 		s_select
 	int 			col;
 	int				maxlen;
 	int				out_fd;
-	struct termios	*sauv;
+	struct termios	sauv;
 	t_lst			*list;
 }					t_select;
 
