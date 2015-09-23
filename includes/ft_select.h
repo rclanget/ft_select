@@ -51,14 +51,14 @@ void				get_canon(struct termios term);
 void				clear_win(void);
 void				get_size(void);
 int					ft_putch(int c);
-void				handle_winch(void);
 int					looping(void);
-void				handle_sigcont(void);
-void				get_new_size(int i);
 void				put_cursor(int i, int j);
 void				stat_cursor(int stat);
 void				free_list(t_lst *list);
 int					ft_exit(void);
 int					ft_out_fd(void);
+void				handle_winch(int i);
+void				handle_signal(void);
+int					ft_init(void);
 
 #endif

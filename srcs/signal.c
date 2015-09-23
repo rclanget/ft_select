@@ -35,11 +35,12 @@ void		handle_winch(int i)
 
 void		handling_quit(int i)
 {
+	(void)i;
 	set_term(ft_glob(NULL)->sauv);
 	ft_exit();
 }
 
-int			handle_signal(void)
+void		handle_signal(void)
 {
 	int i;
 
@@ -47,7 +48,7 @@ int			handle_signal(void)
 	while (++i < 32)
 	{
 		if (i == SIGCONT || i == SIGTSTP)
-			signal(i, hangle_sigcont);
+			signal(i, handle_sigcont);
 		else if (i == SIGWINCH)
 			signal(i, handle_winch);
 		else if (i != SIGURG && i != SIGCHLD && i != SIGTTIN

@@ -1,13 +1,6 @@
 #include "ft_select.h"
 #include "libft.h"
 
-int 	sign(void)
-{
-  handle_winch();
-  handle_sigcont();
-  return (1);
-}
-
 int ft_init(void)
 {
 	char            *name_term;
@@ -21,8 +14,8 @@ int ft_init(void)
 	ft_memcpy(&ft_glob(NULL)->sauv, &term, sizeof(struct termios));
 	get_canon(term);
 	stat_cursor(0);
-	sign(); // handle_signal
-	get_new_size(0); // handle_winch
+	handle_signal();
+	handle_winch(0);
 	return (1);
 }
 
