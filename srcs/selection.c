@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/23 16:57:18 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/23 17:19:30 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,19 @@ void	selection(int move, int del)
 void	enter(void)
 {
 	t_lst	*begin;
-	int		last;
 	int		selected;
 
 	selected = 0;
-	last = ft_glob(NULL)->list->prev->no;
 	begin = ft_glob(NULL)->list;
 	clear_win();
 	while (1)
 	{
 		if (begin->slctd)
-		{
-			selected++;
-			ft_fdprintf(1, "%s", begin->file);
-			if (begin->no < last)
-				ft_fdprintf(1, " ");
-		}
-		if (begin->next->start)
+			ft_printf((selected++) ? " %s" : "%s", begin->file);
+		if ((begin = begin->next)->start)
 			break ;
-		begin = begin->next;
 	}
-	if (selected)
-		ft_fdprintf(1, "\n");
+	ft_printf((selected) ? "\n" : "");
 	ft_exit();
 }
 
@@ -95,20 +86,23 @@ int		looping(void)
 {
 	int		c;
 
-	c = 0;
-	read(0, &c, sizeof(int));
-	if (c == UP_KEY)
-		selection(-1, 0);
-	else if (c == DOWN_KEY)
-		selection(1, 0);
-	else if (c == DEL_KEY)
-		selection(0, 1);
-	else if (c == SPACE_KEY)
-		selection(0, 0);
-	else if (c == ENTER_KEY)
-		enter();
-	else if (c == ESC_KEY)
-		escape_select();
-	print_elem(ft_glob(NULL)->list);
+	while (1)
+	{
+		c = 0;
+		read(0, &c, sizeof(int));
+		if (c == UP_KEY)
+			selection(-1, 0);
+		else if (c == DOWN_KEY)
+			selection(1, 0);
+		else if (c == DEL_KEY)
+			selection(0, 1);
+		else if (c == SPACE_KEY)
+			selection(0, 0);
+		else if (c == ENTER_KEY)
+			enter();
+		else if (c == ESC_KEY)
+			escape_select();
+		print_elem(ft_glob(NULL)->list);
+	}
 	return (0);
 }
