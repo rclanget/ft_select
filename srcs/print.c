@@ -109,28 +109,28 @@ void print_elem(t_lst *list)
         current = 1;
     if ((i == ft_glob(NULL)->line) && (j += (ft_glob(NULL)->maxlen + 1)))
         i = 0;
-    if ((j + ft_glob(NULL)->maxlen) > ft_glob(NULL)->col)
-      break;
     if (!begin->dlted)
     {
       print_file(begin);
       put_cursor(i++, j);
-    }
+    }    
+    if ((j + ft_glob(NULL)->maxlen) > ft_glob(NULL)->col)
+      break;
     begin = begin->next;
     if (begin->start)
       break;
   }
   if (!current)
-    print_elem(begin);
+    print_elem(begin->next);
   put_cursor(ft_glob(NULL)->line + 1, 0);
 }
 
 int             main(int argc, char **argv)
 {
-	char           *name_term;
-  struct termios term;
-  struct termios sauv;
-  t_select *info;
+	char            *name_term;
+  struct termios  term;
+  struct termios  sauv;
+  t_select        *info;
 
   (void)argc;
   handle_winch();
