@@ -6,12 +6,21 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/23 10:43:23 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/23 16:45:43 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 #include "libft.h"
+
+#define UP_KEY		4283163
+#define DOWN_KEY	4348699
+#define LEFT_KEY	4479771
+#define RIGHT_KEY	4414235
+#define ENTER_KEY	10
+#define ESC_KEY		96
+#define SPACE_KEY	32
+#define DEL_KEY		127
 
 t_lst	*get_elemno(int move, int no)
 {
@@ -54,6 +63,7 @@ void	enter(void)
 
 	last = ft_glob(NULL)->list->prev->no;
 	begin = ft_glob(NULL)->list;
+	clear_win();
 	while (begin)
 	{
 		if (begin->slctd)
@@ -71,25 +81,30 @@ void	enter(void)
 	ft_exit();
 }
 
+void	escape_select(void)
+{
+	clear_win();
+	ft_exit();
+}
+
 int		looping(void)
 {
-	char	buf[3];
+	int		c;
 
-	ft_bzero(buf, 3);
-	read(0, buf, 3);
-	if (buf[0] == 27 && buf[1] == 91)
-	{
-		if (buf[2] == 'A')
-			selection(-1, 0);
-		if (buf[2] == 'B')
-			selection(1, 0);
-	}
-	else if (buf[0] == 127 && buf[1] == 0 && buf[2] == 0) // del
+	c = 0;
+	read(0, &c, sizeof(int));
+	if (c == UP_KEY)
+		selection(-1, 0);
+	else if (c == DOWN_KEY)
+		selection(1, 0);
+	else if (c == DEL_KEY)
 		selection(0, 1);
-	else if (buf[0] == 32 && buf[1] == 0 && buf[2] == 0) // espace
+	else if (c == SPACE_KEY)
 		selection(0, 0);
-	else if (buf[0] == 10 && buf[1] == 0 && buf[2] == 0)
+	else if (c == ENTER_KEY)
 		enter();
+	else if (c == ESC_KEY)
+		escape_select();
 	print_elem(ft_glob(NULL)->list);
 	return (0);
 }
