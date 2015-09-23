@@ -7,7 +7,6 @@ int ft_exit(void)
   stat_cursor(1);
   free_list(ft_glob(NULL)->list);
   free(ft_glob(NULL));
-  sleep(10);
   exit (0);
 }
 
