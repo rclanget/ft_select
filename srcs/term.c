@@ -1,5 +1,5 @@
 #include "ft_select.h"
-
+#include "libft.h"
 #include <sys/ioctl.h>
 
 void set_term(struct termios term)
@@ -27,7 +27,7 @@ void clear_win(void)
   clearstr = tgetstr("dl", &ap);
   while (line-- >= 0)
   {
-    tputs(clearstr, 1, ft_putch);
+    ft_putstr_fd(clearstr, ft_glob(NULL)->out_fd);
     put_cursor(line, 0);
   }
 }
@@ -39,7 +39,7 @@ void stat_cursor(int stat)
   char *cursor;
 
   cursor = tgetstr(stat ? "ve" : "vi", &ap);
-  tputs(cursor, 1, ft_putch);
+  ft_putstr_fd(cursor, ft_glob(NULL)->out_fd);
 }
 
 void get_size(void)

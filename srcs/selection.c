@@ -12,6 +12,7 @@
 
 #include "ft_select.h"
 #include "libft.h"
+#include "ft_printf.h"
 
 t_lst	*get_elemno(int move, int no)
 {
@@ -58,13 +59,13 @@ void	enter(void)
 	{
 		if (begin->slctd)
 		{
-			ft_fdprintf("%s", begin->file);
+			ft_fdprintf(1, "%s", begin->file);
 			if (begin->no < last)
-				ft_fdprintf(ft_glob(NULL)->out_fd, " ");
+				ft_fdprintf(1, " ");
 		}
 		if ((begin = begin->next)->start)
 		{
-			ft_fdprintf(ft_glob(NULL)->out_fd, "\n");
+			ft_fdprintf(1, "\n");
 			break ;
 		}
 	}
