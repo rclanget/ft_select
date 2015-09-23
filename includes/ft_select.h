@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:19:14 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/22 13:38:31 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/23 10:45:48 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct 		s_select
 	int 			line;
 	int 			col;
 	int				maxlen;
+	int				out_fd;
 	struct termios	*sauv;
 	t_lst			*list;
 }					t_select;

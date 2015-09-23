@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/23 10:40:40 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/23 10:43:23 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ void	selection(int move, int del)
 void	enter(void)
 {
 	t_lst	*begin;
+	int		last;
 
+	last = ft_glob(NULL)->list->prev->no;
 	begin = ft_glob(NULL)->list;
 	while (begin)
 	{
