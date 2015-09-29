@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/23 17:19:30 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/29 16:46:05 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	enter(void)
 	while (1)
 	{
 		if (begin->slctd)
-			ft_printf((selected++) ? " %s" : "%s", begin->file);
+			ft_printf((selected++) ? " %10s" : "%10s", begin->file);
 		if ((begin = begin->next)->start)
 			break ;
 	}
@@ -102,7 +102,7 @@ int		looping(void)
 			enter();
 		else if (c == ESC_KEY)
 			escape_select();
-		print_elem(ft_glob(NULL)->list);
+		print_elem(ft_glob(NULL)->list, 1, 0);
 	}
 	return (0);
 }

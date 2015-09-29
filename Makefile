@@ -11,7 +11,8 @@
 #******************************************************************************#
 
 SRC_PATH	=	./srcs/
-SRC_NAME	=	global.c parsing.c print.c term.c signal.c selection.c isatty.c main.c
+SRC_NAME	=	global.c parsing.c print.c term.c signal.c selection.c \
+				isatty.c main.c inline.c
 OBJ_PATH	=	./obj/
 INC_PATH	=	./includes/ ./libft/includes/ ./ft_printf/includes/
 NAME		=	./ft_select

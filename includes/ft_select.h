@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:19:14 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/23 10:45:48 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/29 16:45:04 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 #include <stdlib.h>
 
 #include <stdio.h>
+
+#define 	OPT_I			0x1
+
+#define		GET(x)			ft_glob(NULL)->x
+#define		SET(x, y)		ft_glob(NULL)->x = y
+#define		PUT(x)			ft_fdprintf(GET(out_fd), tgetstr(x, NULL));
 
 typedef struct 		s_lst
 {
@@ -40,11 +46,12 @@ typedef struct 		s_select
 	int				out_fd;
 	struct termios	sauv;
 	t_lst			*list;
+	int				option;
 }					t_select;
 
 t_lst				*ft_parse(char **argv);
 t_select			*ft_glob(t_select *arg);
-void				print_elem(t_lst *list);
+void				print_elem(t_lst *list, int i, int j);
 void				get_size(void);
 void				set_term(struct termios term);
 void				get_canon(struct termios term);
