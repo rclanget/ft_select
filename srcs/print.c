@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/29 16:17:39 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/29 16:46:53 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/29 16:52:47 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int		ft_exit(void)
 {
-	set_term(ft_glob(NULL)->sauv);
+	set_term(GET(sauv));
 	stat_cursor(1);
-	free_list(ft_glob(NULL)->list);
+	free_list(GET(list));
 	free(ft_glob(NULL));
 	exit (0);
 }
