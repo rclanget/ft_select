@@ -6,13 +6,12 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/29 16:46:05 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/30 12:23:04 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 #include "libft.h"
-#include "ft_printf.h"
 
 #define UP_KEY		4283163
 #define DOWN_KEY	4348699
@@ -68,11 +67,11 @@ void	enter(void)
 	while (1)
 	{
 		if (begin->slctd)
-			ft_printf((selected++) ? " %10s" : "%10s", begin->file);
+			ft_print((selected++) ? " %s" : "%s", begin->file);
 		if ((begin = begin->next)->start)
 			break ;
 	}
-	ft_printf((selected) ? "\n" : "");
+	ft_print((selected) ? "\n" : "");
 	ft_exit();
 }
 

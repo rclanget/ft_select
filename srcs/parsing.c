@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 14:49:48 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/22 13:39:43 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/30 12:20:50 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 t_lst	*create_list(char **argv, int start, t_lst *prev, int number)
 {
-	t_lst 	*elem;
-	int 	len;
+	t_lst		*elem;
+	int			len;
 
 	len = 0;
 	if (!*argv)

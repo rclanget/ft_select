@@ -6,30 +6,30 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:19:14 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/29 16:45:04 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/30 12:26:04 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 
-#include <termios.h>
-#include <unistd.h>
-#include <term.h>
-#include <stdlib.h>
+# include <termios.h>
+# include <unistd.h>
+# include <term.h>
+# include <stdlib.h>
 
-#include <stdio.h>
+# include <stdio.h>
 
-#define 	OPT_I			0x1
+# define OPT_I			0x1
 
-#define		GET(x)			ft_glob(NULL)->x
-#define		SET(x, y)		ft_glob(NULL)->x = y
-#define		PUT(x)			ft_fdprintf(GET(out_fd), tgetstr(x, NULL));
+# define GET(x)			ft_glob(NULL)->x
+# define SET(x, y)		ft_glob(NULL)->x = y
+# define PUT(x)			ft_fdprint(GET(out_fd), tgetstr(x, NULL));
 
-typedef struct 		s_lst
+typedef struct		s_lst
 {
 	char			*file;
-	int 			start;
+	int				start;
 	int				slctd;
 	int				crrnt;
 	int				dlted;
@@ -38,10 +38,10 @@ typedef struct 		s_lst
 	struct s_lst	*prev;
 }					t_lst;
 
-typedef struct 		s_select
+typedef struct		s_select
 {
-	int 			line;
-	int 			col;
+	int				line;
+	int				col;
 	int				maxlen;
 	int				out_fd;
 	struct termios	sauv;

@@ -6,13 +6,12 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/29 16:17:39 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/29 16:52:47 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/09/30 12:21:45 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 #include "libft.h"
-#include "ft_printf.h"
 
 int		ft_exit(void)
 {
@@ -20,7 +19,7 @@ int		ft_exit(void)
 	stat_cursor(1);
 	free_list(GET(list));
 	free(ft_glob(NULL));
-	exit (0);
+	exit(0);
 }
 
 int		print_file(t_lst *file)
@@ -30,7 +29,7 @@ int		print_file(t_lst *file)
 	if (file->slctd)
 		PUT("so");
 	if (!file->dlted)
-		ft_fdprintf(GET(out_fd), "%s", file->file);
+		ft_fdprint(GET(out_fd), "%s", file->file);
 	if (file->crrnt)
 		PUT("ue");
 	if (file->slctd)
@@ -55,7 +54,7 @@ void	next_col(int *i, int *j)
 	}
 }
 
-void print_elem(t_lst *list, int i, int j)
+void	print_elem(t_lst *list, int i, int j)
 {
 	t_lst	*begin;
 	int		current;
@@ -73,7 +72,7 @@ void print_elem(t_lst *list, int i, int j)
 			put_cursor(i++, j);
 		}
 		if ((j + GET(maxlen)) > GET(col) || (begin = begin->next)->start)
-			break;
+			break ;
 	}
 	current ? put_cursor(GET(line) + 1, 0) : print_elem(begin->next, 1, 0);
 }

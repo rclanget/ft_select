@@ -2,8 +2,6 @@
 #include "libft.h"
 #include <sys/ioctl.h>
 
-#include "ft_printf.h"
-
 void set_term(struct termios term)
 {
   tcsetattr(0, TCSADRAIN, &term);  
