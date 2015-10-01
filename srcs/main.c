@@ -35,4 +35,5 @@ int             main(int argc, char **argv)
 		!ft_init())
 		return (0);
 	looping();
+	return (1);
 }

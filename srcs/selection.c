@@ -22,6 +22,25 @@
 #define SPACE_KEY	32
 #define DEL_KEY		127
 
+int 	get_move(int no, int move)
+{
+	int 	last;
+	int 	line;
+
+	last = GET(list)->prev->no;
+	line = GET(line);
+	if ((move <= 1 && move >= -1) || ((move + no) <= last && move > 0))
+		return (no + move);
+	else if (move < 0 && (no + move >= 0))
+		return (no + move);
+	else if (move > 0)
+		return (no - (move * (no / move)));
+	no += ((last / line) * line);
+	while (no > last && no >= 0)
+		no -= line;
+	return (no);
+}
+
 t_lst	*get_elemno(int move, int no)
 {
 	t_lst	*begin;
@@ -29,6 +48,7 @@ t_lst	*get_elemno(int move, int no)
 
 	begin = ft_glob(NULL)->list;
 	last = ft_glob(NULL)->list->prev->no;
+
 	if (no < 0 || no > last)
 		no = (no < 0) ? last : 0;
 	while (begin->no != no)
@@ -47,7 +67,7 @@ void	selection(int move, int del)
 		begin = begin->next;
 	begin->crrnt = 0;
 	if (move)
-		get_elemno(move, begin->no + move)->crrnt = 1;
+		get_elemno(move, get_move(begin->no, move))->crrnt = 1;
 	else
 	{
 		get_elemno(1, begin->no + 1)->crrnt = 1;
@@ -67,11 +87,11 @@ void	enter(void)
 	while (1)
 	{
 		if (begin->slctd)
-			ft_print((selected++) ? " %s" : "%s", begin->file);
+			ft_printf((selected++) ? " %s" : "%s", begin->file);
 		if ((begin = begin->next)->start)
 			break ;
 	}
-	ft_print((selected) ? "\n" : "");
+	ft_printf((selected) ? "\n" : "");
 	ft_exit();
 }
 
@@ -93,6 +113,10 @@ int		looping(void)
 			selection(-1, 0);
 		else if (c == DOWN_KEY)
 			selection(1, 0);
+		else if (c == RIGHT_KEY)
+			selection(GET(line), 0);
+		else if (c == LEFT_KEY)
+			selection(GET(line) * -1, 0);
 		else if (c == DEL_KEY)
 			selection(0, 1);
 		else if (c == SPACE_KEY)

@@ -29,7 +29,7 @@ int		print_file(t_lst *file)
 	if (file->slctd)
 		PUT("so");
 	if (!file->dlted)
-		ft_fdprint(GET(out_fd), "%s", file->file);
+		ft_fdprintf(GET(out_fd), "%s", file->file);
 	if (file->crrnt)
 		PUT("ue");
 	if (file->slctd)
