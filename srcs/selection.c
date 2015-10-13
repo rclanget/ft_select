@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/30 12:23:04 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/10/13 15:42:34 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 #define SPACE_KEY	32
 #define DEL_KEY		127
 
-int 	get_move(int no, int move)
+int		get_move(int no, int move)
 {
-	int 	last;
-	int 	line;
+	int		last;
+	int		line;
 
 	last = GET(list)->prev->no;
 	line = GET(line);
@@ -48,7 +48,6 @@ t_lst	*get_elemno(int move, int no)
 
 	begin = ft_glob(NULL)->list;
 	last = ft_glob(NULL)->list->prev->no;
-
 	if (no < 0 || no > last)
 		no = (no < 0) ? last : 0;
 	while (begin->no != no)
@@ -87,17 +86,11 @@ void	enter(void)
 	while (1)
 	{
 		if (begin->slctd)
-			ft_printf((selected++) ? " %s" : "%s", begin->file);
+			ft_print((selected++) ? " %s" : "%s", begin->file);
 		if ((begin = begin->next)->start)
 			break ;
 	}
-	ft_printf((selected) ? "\n" : "");
-	ft_exit();
-}
-
-void	escape_select(void)
-{
-	clear_win();
+	ft_print((selected) ? "\n" : "");
 	ft_exit();
 }
 
@@ -109,22 +102,19 @@ int		looping(void)
 	{
 		c = 0;
 		read(0, &c, sizeof(int));
-		if (c == UP_KEY)
-			selection(-1, 0);
-		else if (c == DOWN_KEY)
-			selection(1, 0);
-		else if (c == RIGHT_KEY)
-			selection(GET(line), 0);
-		else if (c == LEFT_KEY)
-			selection(GET(line) * -1, 0);
-		else if (c == DEL_KEY)
-			selection(0, 1);
-		else if (c == SPACE_KEY)
-			selection(0, 0);
+		if (c == UP_KEY || c == DOWN_KEY)
+			selection(c == UP_KEY ? -1 : 1, 0);
+		else if (c == RIGHT_KEY || c == LEFT_KEY)
+			selection(c == RIGHT_KEY ? GET(line) : GET(line) * -1, 0);
+		else if (c == DEL_KEY || c == SPACE_KEY)
+			selection(0, c == DEL_KEY ? 1 : 0);
 		else if (c == ENTER_KEY)
 			enter();
 		else if (c == ESC_KEY)
-			escape_select();
+		{
+			clear_win();
+			ft_exit();
+		}
 		print_elem(ft_glob(NULL)->list, 1, 0);
 	}
 	return (0);

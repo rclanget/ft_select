@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/29 16:17:39 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/30 12:21:45 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/10/13 15:27:18 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		print_file(t_lst *file)
 	if (file->slctd)
 		PUT("so");
 	if (!file->dlted)
-		ft_fdprintf(GET(out_fd), "%s", file->file);
+		ft_fdprint(GET(out_fd), "%s", file->file);
 	if (file->crrnt)
 		PUT("ue");
 	if (file->slctd)

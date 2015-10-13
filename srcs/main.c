@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/10/13 15:25:39 by ulefebvr          #+#    #+#             */
+/*   Updated: 2015/10/13 15:46:43 by ulefebvr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 #include "libft.h"
 
-int ft_init(void)
+int				ft_init(void)
 {
-	char            *name_term;
-	struct termios  term;
+	char			*name_term;
+	struct termios	term;
 
 	if (!(name_term = getenv("TERM")))
 		return (0);
@@ -19,9 +31,9 @@ int ft_init(void)
 	return (1);
 }
 
-int             main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
-	t_select        *info;
+	t_select		*info;
 	int				i;
 
 	(void)argc;
