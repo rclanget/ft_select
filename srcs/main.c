@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/13 15:25:39 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/10/13 15:46:43 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/10/28 17:35:01 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,10 @@ int				ft_init(void)
 int				main(int argc, char **argv)
 {
 	t_select		*info;
-	int				i;
 
 	(void)argc;
 	if (!(info = (t_select *)malloc(sizeof(t_select))))
 		return (0);
-	if ((i = ft_option(argc, argv, "i", &info->option)))
-		argv += i;
 	if (!(ft_glob(info)) ||
 		(ft_out_fd() == -1) ||
 		!(ft_glob(NULL)->list = ft_parse(argv)) ||

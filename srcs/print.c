@@ -6,7 +6,7 @@
 /*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/29 16:17:39 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/10/13 15:27:18 by ulefebvr         ###   ########.fr       */
+/*   Updated: 2015/10/28 17:43:00 by ulefebvr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ void	print_elem(t_lst *list, int i, int j)
 {
 	t_lst	*begin;
 	int		current;
+	int		files;
 
+	files = 0;
 	current = 0;
 	begin = list;
 	clear_win();
@@ -68,11 +70,14 @@ void	print_elem(t_lst *list, int i, int j)
 		next_col(&i, &j);
 		if (!begin->dlted)
 		{
+			files++;
 			print_file(begin);
 			put_cursor(i++, j);
 		}
 		if ((j + GET(maxlen)) > GET(col) || (begin = begin->next)->start)
 			break ;
 	}
+	if (!files)
+		ft_exit();
 	current ? put_cursor(GET(line) + 1, 0) : print_elem(begin->next, 1, 0);
 }
