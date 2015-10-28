@@ -6,7 +6,7 @@
 #    By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/16 18:39:36 by ulefebvr          #+#    #+#              #
-#    Updated: 2015/09/21 14:53:45 by ulefebvr         ###   ########.fr        #
+#    Updated: 2015/10/28 17:30:44 by ulefebvr         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -50,4 +50,4 @@ re: fclean all
 
 norme:
 	norminette $(SRC)
-	norminette $(INC_PATH)*.h
+	norminette $(INC_PATH)
