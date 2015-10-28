@@ -6,7 +6,7 @@ This is a 42 school project consisting in create a menu with termcaps in the ter
 
 ## How to use
 
-   ./ft_select [args, ...]
+	./ft_select [args, ...]
 
 ## Contributors
 
