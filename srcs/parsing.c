@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/21 14:49:48 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/30 12:20:50 by ulefebvr         ###   ########.fr       */
+/*   Created: 2015/09/21 14:49:48 by rclanget          #+#    #+#             */
+/*   Updated: 2016/12/31 16:43:39 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,18 @@ t_lst	*ft_parse(char **argv)
 
 void	free_list(t_lst *list)
 {
-	while ((list = list->next))
+	t_lst *tmp;
+
+	tmp = list ? list->next : list;
+	while (tmp)
 	{
-		if (list->start)
+		list = tmp->next;
+		if (tmp->start)
 			break ;
-		free(list->file);
-		free(list);
+		free(tmp->file);
+		free(tmp);
+		tmp = list;
 	}
-	free(list->file);
-	free(list);
+	free(tmp->file);
+	free(tmp);
 }

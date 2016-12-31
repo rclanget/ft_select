@@ -3,25 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/21 17:24:20 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/30 12:25:33 by ulefebvr         ###   ########.fr       */
+/*   Created: 2015/09/21 17:24:20 by rclanget          #+#    #+#             */
+/*   Updated: 2016/12/31 16:53:55 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
 #include <signal.h>
+#include <sys/ioctl.h>
 
 void		handle_sigcont(int sig)
 {
+	char cp[1];
+
+	cp[0] = GET(sauv).c_cc[VSUSP];
 	if (sig == SIGCONT)
 		ft_init();
 	else
 	{
 		set_term(ft_glob(NULL)->sauv);
 		signal(SIGTSTP, SIG_DFL);
+		ioctl(0, TIOCSTI, cp);
 	}
 }
 

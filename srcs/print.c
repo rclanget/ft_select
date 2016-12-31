@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/29 16:17:39 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/10/28 17:43:00 by ulefebvr         ###   ########.fr       */
+/*   Created: 2015/09/29 16:17:39 by rclanget          #+#    #+#             */
+/*   Updated: 2016/12/31 16:32:57 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		ft_exit(void)
 	free_list(GET(list));
 	free(ft_glob(NULL));
 	exit(0);
+	return (1);
 }
 
 int		print_file(t_lst *file)

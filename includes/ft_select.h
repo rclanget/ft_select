@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_select.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/21 17:19:14 by ulefebvr          #+#    #+#             */
-/*   Updated: 2015/09/30 12:26:04 by ulefebvr         ###   ########.fr       */
+/*   Created: 2015/09/21 17:19:14 by rclanget          #+#    #+#             */
+/*   Updated: 2016/12/31 16:54:33 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <unistd.h>
 # include <term.h>
 # include <stdlib.h>
-
-# include <stdio.h>
 
 # define OPT_I			0x1
 
