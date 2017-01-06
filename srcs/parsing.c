@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 14:49:48 by rclanget          #+#    #+#             */
-/*   Updated: 2016/12/31 16:43:39 by rclanget         ###   ########.fr       */
+/*   Updated: 2016/12/31 18:06:03 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <stdlib.h>
 
-t_lst	*create_list(char **argv, int start, t_lst *prev, int number)
+static t_lst	*create_list(char **argv, int start, t_lst *prev, int number)
 {
 	t_lst		*elem;
 	int			len;
@@ -36,7 +36,7 @@ t_lst	*create_list(char **argv, int start, t_lst *prev, int number)
 	return (elem);
 }
 
-t_lst	*circular(t_lst *list)
+static t_lst	*circular(t_lst *list)
 {
 	t_lst	*end;
 
@@ -48,14 +48,14 @@ t_lst	*circular(t_lst *list)
 	return (list);
 }
 
-t_lst	*ft_parse(char **argv)
+t_lst			*ft_parse(char **argv)
 {
 	if (!argv || !*argv || !**argv)
 		return (NULL);
 	return (circular(create_list(argv, 1, NULL, 0)));
 }
 
-void	free_list(t_lst *list)
+void			free_list(t_lst *list)
 {
 	t_lst *tmp;
 

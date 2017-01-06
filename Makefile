@@ -6,7 +6,7 @@
 #    By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/16 18:39:36 by rclanget          #+#    #+#              #
-#    Updated: 2016/12/31 16:46:58 by rclanget         ###   ########.fr        #
+#    Updated: 2017/01/06 18:28:08 by rclanget         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,25 +29,28 @@ LDFLAGS		=	$(LIB_NAMES)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C libft
-	$(CC) $(LDFLAGS) $(OBJ) -o $@
+	@make -C libft
+	@$(CC) $(LDFLAGS) $(OBJ) -o $@ && \
+		printf " -->> \033[32mCompilation Success: %s\033[0m             \n" "$@"|| \
+		printf " -->> \033[31mCompilation Failed: %s\033[0m              \n" "$@";
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
-	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $< $(INC) && \
+		printf " -->> \033[32mOk\033[0m: %s                       \r" "$@" || \
+		printf " -->> \033[31mKo\033[0m: %s                       \r" "$@";
 
 clean:
-	make clean -C libft
-	rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	@make clean -C libft
+	@rm -rfv $(OBJ_PATH)
 
 fclean: clean
-	make fclean -C libft
-	rm -fv $(NAME)
+	@make fclean -C libft
+	@rm -fv $(NAME)
 
 re: fclean all
-	make re -C libft
+	@make re -C libft
 
 norme:
-	norminette $(SRC)
-	norminette $(INC_PATH)
+	@norminette $(SRC)
+	@norminette $(INC_PATH)

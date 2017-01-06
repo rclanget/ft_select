@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:24:20 by rclanget          #+#    #+#             */
-/*   Updated: 2016/12/31 16:53:55 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/06 16:54:27 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,16 @@
 #include <signal.h>
 #include <sys/ioctl.h>
 
-void		handle_sigcont(int sig)
+#include "libft.h"
+
+void			handle_winch(int i)
+{
+	get_size();
+	if (i < 0 || GET(col) >= 100)
+		print_elem(GET(list), 1, 0);
+}
+
+static void		handle_sigcont(int sig)
 {
 	char cp[1];
 
@@ -24,27 +33,22 @@ void		handle_sigcont(int sig)
 		ft_init();
 	else
 	{
+		clear_win();
+		stat_cursor(1);
 		set_term(ft_glob(NULL)->sauv);
 		signal(SIGTSTP, SIG_DFL);
 		ioctl(0, TIOCSTI, cp);
 	}
 }
 
-void		handle_winch(int i)
+static void		handling_quit(int i)
 {
 	(void)i;
-	get_size();
-	print_elem(GET(list), 1, 0);
-}
-
-void		handling_quit(int i)
-{
-	(void)i;
-	set_term(ft_glob(NULL)->sauv);
+	clear_win();
 	ft_exit();
 }
 
-void		handle_signal(void)
+void			handle_signal(void)
 {
 	int i;
 

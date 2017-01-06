@@ -6,39 +6,33 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/29 16:17:39 by rclanget          #+#    #+#             */
-/*   Updated: 2016/12/31 16:32:57 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/06 16:18:34 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 #include "libft.h"
+#include <sys/stat.h>
 
-int		ft_exit(void)
+#define RED		"\x1B[31;1m"
+#define CYN		"\x1B[36;1m"
+#define WHT		"\x1B[37;1m"
+#define RESET	"\x1B[0m"
+
+int				ft_file_which_type(const char *path)
 {
-	set_term(GET(sauv));
-	stat_cursor(1);
-	free_list(GET(list));
-	free(ft_glob(NULL));
-	exit(0);
-	return (1);
+	struct stat path_stat;
+
+	stat(path, &path_stat);
+	if (S_ISREG(path_stat.st_mode))
+		return (1);
+	if (S_ISDIR(path_stat.st_mode))
+		return (2);
+	else
+		return (0);
 }
 
-int		print_file(t_lst *file)
-{
-	if (file->crrnt)
-		PUT("us");
-	if (file->slctd)
-		PUT("so");
-	if (!file->dlted)
-		ft_fdprint(GET(out_fd), "%s", file->file);
-	if (file->crrnt)
-		PUT("ue");
-	if (file->slctd)
-		PUT("se");
-	return (1);
-}
-
-void	put_cursor(int i, int j)
+void			put_cursor(int i, int j)
 {
 	char	*gotostr;
 
@@ -46,7 +40,32 @@ void	put_cursor(int i, int j)
 	ft_putstr_fd(tgoto(gotostr, j, i), ft_glob(NULL)->out_fd);
 }
 
-void	next_col(int *i, int *j)
+static int		print_file(t_lst *file)
+{
+	int		color;
+
+	if (file->crrnt)
+		PUT("us");
+	if (file->slctd)
+		PUT("so");
+	if (!file->dlted)
+	{
+		color = ft_file_which_type(file->file);
+		if (color == 1)
+			ft_fdprint(GET(out_fd), CYN"%s"RESET, file->file);
+		else if (color == 2)
+			ft_fdprint(GET(out_fd), RED"%s"RESET, file->file);
+		else
+			ft_fdprint(GET(out_fd), WHT"%s"RESET, file->file);
+	}
+	if (file->crrnt)
+		PUT("ue");
+	if (file->slctd)
+		PUT("se");
+	return (1);
+}
+
+static void		next_col(int *i, int *j)
 {
 	if (*i == GET(line))
 	{
@@ -55,7 +74,7 @@ void	next_col(int *i, int *j)
 	}
 }
 
-void	print_elem(t_lst *list, int i, int j)
+void			print_elem(t_lst *list, int i, int j)
 {
 	t_lst	*begin;
 	int		current;

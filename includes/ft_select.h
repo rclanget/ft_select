@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:19:14 by rclanget          #+#    #+#             */
-/*   Updated: 2016/12/31 16:54:33 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/06 16:52:49 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <term.h>
 # include <stdlib.h>
 
-# define OPT_I			0x1
+# define OPT_I		0x1
 
-# define GET(x)			ft_glob(NULL)->x
-# define SET(x, y)		ft_glob(NULL)->x = y
-# define PUT(x)			ft_fdprint(GET(out_fd), tgetstr(x, NULL));
+# define GET(x)		ft_glob(NULL)->x
+# define SET(x, y)	ft_glob(NULL)->x = y
+# define PUT(x)		ft_fdprint(GET(out_fd), tgetstr(x, NULL));
 
 typedef struct		s_lst
 {

@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by rclanget          #+#    #+#             */
-/*   Updated: 2016/12/31 16:32:02 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/05 12:20:27 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@
 #define SPACE_KEY	32
 #define DEL_KEY		127
 
-int		get_move(int no, int move)
+#define IS_IN_RANGE(x, min, max)	((x) >= (min) && (x) <= (max))
+
+static int		get_move(int no, int move)
 {
 	int		last;
 	int		line;
 
 	last = GET(list)->prev->no;
 	line = GET(line);
-	if ((move <= 1 && move >= -1) || ((move + no) <= last && move > 0))
+	if (IS_IN_RANGE(move, 1, -1) || ((move + no) <= last && move > 0))
 		return (no + move);
 	else if (move < 0 && (no + move >= 0))
 		return (no + move);
@@ -41,7 +43,7 @@ int		get_move(int no, int move)
 	return (no);
 }
 
-t_lst	*get_elemno(int move, int no)
+static t_lst	*get_elemno(int move, int no)
 {
 	t_lst	*begin;
 	int		last;
@@ -57,7 +59,7 @@ t_lst	*get_elemno(int move, int no)
 	return (begin);
 }
 
-void	selection(int move, int del)
+void			selection(int move, int del)
 {
 	t_lst	*begin;
 
@@ -75,7 +77,7 @@ void	selection(int move, int del)
 	}
 }
 
-void	enter(void)
+void			enter(void)
 {
 	t_lst	*begin;
 	int		selected;
@@ -94,7 +96,7 @@ void	enter(void)
 	ft_exit();
 }
 
-int		looping(void)
+int				looping(void)
 {
 	int		c;
 
@@ -104,8 +106,6 @@ int		looping(void)
 		read(0, &c, sizeof(int));
 		if (c == UP_KEY || c == DOWN_KEY)
 			selection(c == UP_KEY ? -1 : 1, 0);
-		else if (c == RIGHT_KEY || c == LEFT_KEY)
-			selection(c == RIGHT_KEY ? GET(line) : GET(line) * -1, 0);
 		else if (c == DEL_KEY || c == SPACE_KEY)
 			selection(0, c == DEL_KEY ? 1 : 0);
 		else if (c == ENTER_KEY)
