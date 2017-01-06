@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/29 16:17:39 by rclanget          #+#    #+#             */
-/*   Updated: 2017/01/06 16:18:34 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/06 18:32:07 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #define WHT		"\x1B[37;1m"
 #define RESET	"\x1B[0m"
 
-int				ft_file_which_type(const char *path)
+static int		ft_file_which_type(const char *path)
 {
 	struct stat path_stat;
 

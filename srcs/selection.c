@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by rclanget          #+#    #+#             */
-/*   Updated: 2017/01/05 12:20:27 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/06 18:33:20 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static t_lst	*get_elemno(int move, int no)
 	return (begin);
 }
 
-void			selection(int move, int del)
+static void		selection(int move, int del)
 {
 	t_lst	*begin;
 
@@ -77,7 +77,7 @@ void			selection(int move, int del)
 	}
 }
 
-void			enter(void)
+static void		enter(void)
 {
 	t_lst	*begin;
 	int		selected;
