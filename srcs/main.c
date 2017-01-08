@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/13 15:25:39 by rclanget          #+#    #+#             */
-/*   Updated: 2017/01/08 17:20:01 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/08 20:51:19 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ int				main(int argc, char **argv)
 	{
 		argv++;
 		if (!(info = (t_select *)malloc(sizeof(t_select))))
-			ret = 1;
+			return (1);
 		if (!(ft_glob(info)) ||
 			(ft_out_fd() == -1) ||
 			!(ft_glob(NULL)->list = ft_parse(argv)) ||
 			!ft_init())
-			ret = 1;
+				return (1);
 		looping();
 	}
 	else
 	{
 		ft_putendl_fd(YLW"One or more argument is necessary"RESET, 2);
-		ret = 1;
+			return (1);
 	}
-	return (ret);
+	return (0);
 }
