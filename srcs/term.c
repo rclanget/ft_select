@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/13 15:30:41 by rclanget          #+#    #+#             */
-/*   Updated: 2016/12/31 18:05:46 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/08 19:42:52 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	get_size(void)
 {
 	struct winsize w;
 
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	ioctl(0, TIOCGWINSZ, &w);
 	SET(col, w.ws_col);
 	SET(line, w.ws_row);
 }
