@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/13 15:25:39 by rclanget          #+#    #+#             */
-/*   Updated: 2017/01/06 16:52:22 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/08 17:20:01 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				ft_init(void)
 
 	if (!(name_term = getenv("TERM")) || (tgetent(NULL, name_term) == -1))
 	{
-		ft_putendl("Bad term");
+		ft_putendl_fd(YLW"Bad term"RESET, 2);
 		return (0);
 	}
 	if (tcgetattr(0, &term) == -1)
@@ -47,15 +47,25 @@ int				ft_init(void)
 int				main(int argc, char **argv)
 {
 	t_select	*info;
+	int			ret;
 
-	(void)argc;
-	if (!(info = (t_select *)malloc(sizeof(t_select))))
-		return (0);
-	if (!(ft_glob(info)) ||
-		(ft_out_fd() == -1) ||
-		!(ft_glob(NULL)->list = ft_parse(argv)) ||
-		!ft_init())
-		return (0);
-	looping();
-	return (1);
+	ret = 0;
+	if (argc > 1)
+	{
+		argv++;
+		if (!(info = (t_select *)malloc(sizeof(t_select))))
+			ret = 1;
+		if (!(ft_glob(info)) ||
+			(ft_out_fd() == -1) ||
+			!(ft_glob(NULL)->list = ft_parse(argv)) ||
+			!ft_init())
+			ret = 1;
+		looping();
+	}
+	else
+	{
+		ft_putendl_fd(YLW"One or more argument is necessary"RESET, 2);
+		ret = 1;
+	}
+	return (ret);
 }

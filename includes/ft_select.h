@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 17:19:14 by rclanget          #+#    #+#             */
-/*   Updated: 2017/01/06 16:52:49 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/08 17:20:11 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # define GET(x)		ft_glob(NULL)->x
 # define SET(x, y)	ft_glob(NULL)->x = y
 # define PUT(x)		ft_fdprint(GET(out_fd), tgetstr(x, NULL));
+
+#define RED		"\x1B[31;1m"
+#define CYN		"\x1B[36;1m"
+#define WHT		"\x1B[37;1m"
+#define YLW		"\033[33;40m"
+#define RESET	"\x1B[0m"
 
 typedef struct		s_lst
 {
