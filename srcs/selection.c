@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/22 13:25:26 by rclanget          #+#    #+#             */
-/*   Updated: 2017/01/06 18:33:20 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/08 17:46:45 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		get_move(int no, int move)
 
 	last = GET(list)->prev->no;
 	line = GET(line);
-	if (IS_IN_RANGE(move, 1, -1) || ((move + no) <= last && move > 0))
+	if (IS_IN_RANGE(move, -1, 1) || ((move + no) <= last && move > 0))
 		return (no + move);
 	else if (move < 0 && (no + move >= 0))
 		return (no + move);
