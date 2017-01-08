@@ -6,7 +6,7 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 14:49:48 by rclanget          #+#    #+#             */
-/*   Updated: 2016/12/31 18:06:03 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/08 17:24:57 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static t_lst	*create_list(char **argv, int start, t_lst *prev, int number)
 	t_lst		*elem;
 	int			len;
 
-	len = 0;
 	if (!*argv)
 		return (NULL);
 	elem = malloc(sizeof(t_lst));

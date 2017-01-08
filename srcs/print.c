@@ -6,18 +6,13 @@
 /*   By: rclanget <rclanget@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/29 16:17:39 by rclanget          #+#    #+#             */
-/*   Updated: 2017/01/06 18:32:07 by rclanget         ###   ########.fr       */
+/*   Updated: 2017/01/08 19:47:57 by rclanget         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 #include "libft.h"
 #include <sys/stat.h>
-
-#define RED		"\x1B[31;1m"
-#define CYN		"\x1B[36;1m"
-#define WHT		"\x1B[37;1m"
-#define RESET	"\x1B[0m"
 
 static int		ft_file_which_type(const char *path)
 {
